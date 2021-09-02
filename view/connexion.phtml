@@ -1,0 +1,56 @@
+<main>
+	<section id="connexion">
+		<!-- Tab links -->
+		
+		<div class="container connexion-container">
+			<div class="alert">
+				<strong>Mot passe n'est pas correcte</strong>
+				</div>
+			<div class="tab">
+				<button class="tablinks" onclick="openTab(event, 'connect')" id="defaultOpen">Connectez-vous!</button>
+				<button class="tablinks" onclick="openTab(event, 'register')"> Créez un compte</button>
+			</div>
+			<!-- Tab content -->
+			<div id="connect" class="tabcontent">
+				<h3>Vous avez déjà un compte? Connectez-vous!</h3>
+				<form>
+					<label>E-mail :</label>
+					<input placeholder="Entrez votre email ..." name="email" type="email" required>
+					<label>Mot de passe :</label>
+					<input placeholder="Entrez votre mot de passe ..." name="password" type="password" required>
+					<button type="submit" class="btn-primary w-100">Connexion</button>
+				</form>
+			</div>
+			<div id="register" class="tabcontent">
+				<h3>Pas de compte? Créez en un ici</h3>
+				<label>Nom :</label>
+				<input placeholder="Entrez votre nom ..." name="firstname" type="text" required>
+				<label>Prénom :</label>
+				<input placeholder="Entrez votre prénom ..." name="lastname" type="text" required>
+				<label>E-mail :</label>
+				<input placeholder="Entrez votre email ..." name="register-email" type="email" required>
+				<label>Mot de passe :</label>
+				<input placeholder="Entrez une mot de passe ..." name="register-password" type="password" required>
+				<button type="submit" class="btn-primary w-100">Enrigistrer</button>
+			</div>
+		</div>
+	</section>
+</main>
+<script>
+	function openTab(evt, cityName) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+</script>
