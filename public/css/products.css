@@ -1,22 +1,22 @@
-#announcements {
+#products {
   padding-top: 2rem;
 }
-#announcements h1 {
+#products h1 {
   font-size: 1rem;
 }
-#announcements #sidebar-filter {
+#products #sidebar-filter {
   width: 25%;
   flex: 0 0 25%;
   padding-right: 0.5rem;
 }
-#announcements #sidebar-filter #sidebar-filter-container {
+#products #sidebar-filter #sidebar-filter-container {
   background: #fff;
 }
-#announcements #announcements-container {
+#products #products-container {
   width: 75%;
   flex: 0 0 75%;
 }
-#announcements #announcements-container article.announcement {
+#products #products-container article.product {
   width: 25%;
   flex: 0 0 25%;
   overflow: hidden;
@@ -25,19 +25,19 @@
   border: 1px solid #ccc;
 
 }
-#announcements #announcements-container article.announcement .img-container{
+#products #products-container article.product .img-container{
   height: 150px;
   overflow: hidden;
   text-align: center;
 }
-#announcements #announcements-container article.announcement .announcement-title {
+#products #products-container article.product .product-title {
   text-align: center;
 }
-#announcements #announcements-container article.announcement .img-container img {
+#products #products-container article.product .img-container img {
   height: 100%;
   width: auto;
 }
-#announcements #announcements-container article.announcement .type-announcement {
+#products #products-container article.product .type-product {
   border-radius: 2px;
   display: inline-flex;
   justify-content: center;
@@ -49,19 +49,19 @@
   font-size: 0.6rem;
   
 }
-#announcements #announcements-container article.announcement .details-container {
+#products #products-container article.product .details-container {
   text-align: center;
 }
-#announcements #announcements-container article.announcement .details-container p{
+#products #products-container article.product .details-container p{
   line-height: 1;  
   max-height: 35px;
   overflow: hidden;
   text-align: left;
 }
-#announcements #announcements-container article.announcement .details-container a{
+#products #products-container article.product .details-container a{
   color: #b60000;  
 }
-#announcements #change-search-btn {
+#products #change-search-btn {
   width: 100% !important;
   padding: 1rem;
   display: flex;
@@ -73,49 +73,49 @@
   background: #ccc;
 }
 @media only screen and (max-width: 1200px) {
-  #announcements #sidebar-filter {
+  #products #sidebar-filter {
     width: calc( 100% / 3 );
     flex: 0 0 calc( 100% / 3 );
   }
-  #announcements #announcements-container {
+  #products #products-container {
     width: calc( 200% / 3 );
     flex: 0 0 calc( 200% / 3 );
   }
-  #announcements #announcements-container article.announcement {
+  #products #products-container article.product {
     width: calc( 100% / 3 );
     flex: 0 0 calc( 100% / 3 );
   }
   
 }
 @media only screen and (max-width: 992px) {
-  #announcements #sidebar-filter {
+  #products #sidebar-filter {
     width: 50%;
     flex: 0 0 50%;
   }
-  #announcements #announcements-container {
+  #products #products-container {
     width: 50%;
     flex: 0 0 50%;
   }
-  #announcements #announcements-container article.announcement {
+  #products #products-container article.product {
     width: 50%;
     flex: 0 0 50%;
   }
 
 }
 @media only screen and (max-width: 767px) {
-  #announcements #sidebar-filter {
+  #products #sidebar-filter {
     width: 100%;
     flex: 0 0 100%;
   }
-  #announcements #announcements-container {
+  #products #products-container {
     width: 100%;
     flex: 0 0 100%;
   }
-  #announcements #announcements-container article.announcement {
+  #products #products-container article.product {
     width: 100%;
     flex: 0 0 100%;
   }
-  #announcements #announcements-container article.announcement .details-container p{
+  #products #products-container article.product .details-container p{
     text-align: center;
   }
 }

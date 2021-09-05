@@ -1,4 +1,4 @@
 <?php 
 $var = basename(__FILE__,".php");
-include 'view/layouts/default.phtml';
+include 'view/layouts/profile.phtml';
 ?>

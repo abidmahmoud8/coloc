@@ -2406,7 +2406,7 @@ bullhorn:
   label: bullhorn
   search:
     terms:
-      - announcement
+      - product
       - broadcast
       - louder
       - megaphone
@@ -16029,7 +16029,7 @@ scroll:
   search:
     terms:
       - Dungeons & Dragons
-      - announcement
+      - product
       - d&d
       - dnd
       - fantasy
