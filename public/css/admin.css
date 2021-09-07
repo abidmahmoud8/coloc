@@ -53,3 +53,16 @@
     z-index: 2;
   }
 }
+#admin table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#admin td,  #admin th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+#admin tr:nth-child(even) {
+  background-color: #dddddd;
+}
