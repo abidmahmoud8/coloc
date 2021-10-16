@@ -2,7 +2,7 @@
 // Nom de la hote
 $host = 'localhost';
 // Nom de la base de donné
-$dbname = 'voti';
+$dbname = 'coloc';
 // Nom d'utilisteur
 $user = 'root';
 // Mot de passe 
@@ -16,7 +16,6 @@ $pdo = new PDO('mysql:host='.$host.';
   $password,
   [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
 );
-
 // PDO                          : une extension PHP qui définit une interface d'accès à une base de données.
 // PDO::ATTR_DEFAULT_FETCH_MODE : Définit le mode de récupération par défaut.
 // PDO::FETCH_ASSOC             : retourne un tableau indexé par le nom de la colonne comme retourné dans le jeu de résultats

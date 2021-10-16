@@ -1,9 +1,8 @@
 <section id="connexion">
 	<!-- Tab links -->
 	<div class="container connexion-container">
-		<div class="alert">
-			<strong>Mot passe n'est pas correcte</strong>
-			</div>
+		<div class="alert" id="connexion-alert">
+		</div>
 		<div class="tab">
 			<button class="tablinks" onclick="openTab(event, 'connect')" id="defaultOpen">Connectez-vous!</button>
 			<button class="tablinks" onclick="openTab(event, 'register')"> Créez un compte</button>
@@ -14,22 +13,33 @@
 			<form>
 				<label>E-mail :</label>
 				<input placeholder="Entrez votre email ..." name="email" type="email" required>
+				<p id="email-error" class="error"></p>
 				<label>Mot de passe :</label>
 				<input placeholder="Entrez votre mot de passe ..." name="password" type="password" required>
+				<p id="password-error" class="error"></p>
 				<button type="submit" class="btn-primary w-100">Connexion</button>
 			</form>
 		</div>
 		<div id="register" class="tabcontent">
 			<h3>Pas de compte? Créez en un ici</h3>
-			<label>Nom :</label>
-			<input placeholder="Entrez votre nom ..." name="firstname" type="text" required>
-			<label>Prénom :</label>
-			<input placeholder="Entrez votre prénom ..." name="lastname" type="text" required>
-			<label>E-mail :</label>
-			<input placeholder="Entrez votre email ..." name="register-email" type="email" required>
-			<label>Mot de passe :</label>
-			<input placeholder="Entrez une mot de passe ..." name="register-password" type="password" required>
-			<button type="submit" class="btn-primary w-100">Enrigistrer</button>
+			<form>
+				<label>Nom :</label>
+				<input placeholder="Entrez votre nom ..." name="lastname" type="text" required>
+				<p id="lastname-error" class="error"></p>
+				<label>Prénom :</label>
+				<input placeholder="Entrez votre prénom ..." name="firstname" type="text" required>
+				<p id="firstname-error" class="error"></p>
+				<label>E-mail :</label>
+				<input placeholder="Entrez votre email ..." name="register-email" type="email" required>
+				<p id="register-email-error" class="error"></p>
+				<label>Numéro de téléphone  :</label>
+				<input placeholder="Entrez votre numéro de téléphone ..." name="phone" type="number" required>
+				<p id="phone-error" class="error"></p>
+				<label>Mot de passe :</label>
+				<input placeholder="Entrez une mot de passe ..." name="register-password" type="password" required>
+				<p id="register-password-error" class="error"></p>
+				<button type="submit" class="btn-primary w-100">Enregistrer</button>
+			</form>
 		</div>
 	</div>
 </section>

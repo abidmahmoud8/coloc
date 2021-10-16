@@ -69,7 +69,17 @@ button {
   background-color: #f8d7da;
   border-color: #f5c6cb;
   margin-top: 1rem;
+  padding: 0;
+}
+.alert > strong {
+  display: block;
   padding: 0.5rem;
+}
+.error {
+  color: red;
+}
+.error span {
+  display: block;
 }
 .text-primary {
   color: var(--primary-color);
@@ -152,6 +162,9 @@ button {
 .w-100 {
   width: 100%;
 }
+.border-red {
+  border-color: red;
+}
 .bg-black {
   background-color: var(--black-color);
   color: var(--white-color);
@@ -207,3 +220,4 @@ button {
   background: #eee;
   cursor: pointer;
 }
+

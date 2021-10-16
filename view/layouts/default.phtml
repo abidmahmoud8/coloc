@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coloc || Appartements partagés à louer</title>
+  <link href="../../public/js/index.js" rel="stylesheet">	
   <link href="../../public/css/products.css" rel="stylesheet">	
   <link href="../../public/css/login.css" rel="stylesheet">	
   <link href="../../public/css/theme.css" rel="stylesheet">	
@@ -16,14 +17,15 @@
     include 'view/components/showcase/header.phtml';
   ?>
   <main id="default-layout">
-  <?php 
-    include 'view/pages/showcase/' .$var . '.phtml';
-  ?>
+    <?php 
+      include 'view/pages/showcase/' .$var . '.phtml';
+    ?>  
   </main>
   <?php 
     include 'view/components/showcase/footer.phtml';
-
   ?>
-    
 </body>
+<script type="text/javascript" src="../../public/js/classes/Request.class.js"></script>
+<script type="text/javascript" src="../../public/js/classes/User.class.js"></script>
+<script type="text/javascript" src="../../public/js/index.js"></script>
 </html>
