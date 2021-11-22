@@ -3,6 +3,7 @@
 /* Navbar */
 #navbar {
   width: 100%;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.1);
 }
 #navbar > div > div.container {
   display: flex;

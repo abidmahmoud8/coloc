@@ -17,6 +17,9 @@ class Request {
     xmlHttp.send( null );
     return xmlHttp.responseText; 
   }
+  uploadRequest(e) {
+    
+  }
   emailValidator(email) {
     let errors = [];
     var reg = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
@@ -72,7 +75,6 @@ class Request {
     if(isNaN(phone)) {
       errors.push("Le champ numéro de téléphone doit être seulement des chiffres")
     }
-    console.log(errors);
     if(!errors.length) {
       return {status: true}
     } else {

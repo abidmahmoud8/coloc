@@ -4,8 +4,8 @@
 		<div class="alert" id="connexion-alert">
 		</div>
 		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'connect')" id="defaultOpen">Connectez-vous!</button>
-			<button class="tablinks" onclick="openTab(event, 'register')"> Créez un compte</button>
+			<button class="tablinks" onclick="openTab(event, 'connect')" id="opened">Connectez-vous!</button>
+			<button class="tablinks register" onclick="openTab(event, 'register')"> Créez un compte</button>
 		</div>
 		<!-- Tab content -->
 		<div id="connect" class="tabcontent">
@@ -44,20 +44,6 @@
 	</div>
 </section>
 <script>
-	function openTab(evt, cityName) {
-		var i, tabcontent, tablinks;
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = "none";
-		}
-		tablinks = document.getElementsByClassName("tablinks");
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(" active", "");
-		}
-		document.getElementById(cityName).style.display = "block";
-		evt.currentTarget.className += " active";
-	}
 
-	// Get the element with id="defaultOpen" and click on it
-	document.getElementById("defaultOpen").click();
+
 </script>

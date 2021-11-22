@@ -1,28 +1,18 @@
 <?php
+require_once 'config/Database.php';
+
 class User {
-  // Démarrage de la session utilisateur.
   public function __construct() {
-    if (session_status() == PHP_SESSION_NONE) {
-      session_start();
-    }
   }
+  // Démarrage de la session utilisateur.
   public function getUserByMail($email, $passwd) {
     try {
-      echo '<pre>';
-      var_dump($email, $passwd);
-      echo '</pre>';
-      require_once 'config/db-connect.php';
-      $sql = 'SELECT * FROM users WHERE email = "'.$email .'"';
-      $req = $pdo->prepare($sql);
-      $req->execute();
-      $user = $req->fetch(PDO::FETCH_ASSOC);
-      echo '<pre>';
-      var_dump($email, $passwd);
-      echo '</pre>';
+      $database = new Database();
+      $selectSql = 'SELECT * FROM users WHERE email = "'.$email .'"';
+      $user = $database->queryOne($selectSql, []);
       if($user) {
         $hashedPassword = $user["password"];
-        var_dump(password_verify($passwd, $hashedPassword));
-        if(password_verify($passwd, $hashedPassword)) {
+        if($this->checkPassword($passwd, $hashedPassword)) {
           return array("status" => "OK", "user" => $user);
         } else {
           return array("status" => "KO", "msg" => 'Mot de passe incorrect');
@@ -36,24 +26,23 @@ class User {
   } 
   public function createNewUser($first_name, $last_name, $email, $password, $phone) {
     try {
-      require_once 'config/db-connect.php';
-      $password = password_hash($password, PASSWORD_DEFAULT);
-      $sql1 = 'SELECT * FROM users WHERE email = "'.$email .'"';
-      $req1 = $pdo->prepare($sql1);
-      $req1->execute();
-      $user = $req1->fetch(PDO::FETCH_ASSOC);
+      $database = new Database();
+      $password = $this->hashPassword($password);
+      $selectSql = 'SELECT * FROM users WHERE email = "'.$email .'"';
+      $user = $database->queryOne($selectSql, []);
       if($user) {
         return array("status" => "KO", "msg" => "Cette adresse email est déjà utilisé");
       } else {
-        $sql = 'INSERT INTO users (last_name, first_name, email, password, phone, role) VALUES (?, ?, ?, ?, ?, ?)';
-        $query = $pdo->prepare($sql);
-        $query->execute([$first_name, $last_name, $email, $password, $phone, 'customer']);
-        if($pdo->lastInsertId()) {
+        $insertSql = 'INSERT INTO users (last_name, first_name, email, password, phone, role) VALUES (?, ?, ?, ?, ?, ?)';
+        $newUser = $database->executeSql($insertSql, [$first_name, $last_name, $email, $password, $phone, 'customer']);
+        if($newUser) {
           return array("status" => "OK"); 
+        } else {
+          return array("status" => "KO", "msg" => "Problème avec la connexion avec le serveur");
         }
       }
     } catch ( Exception $e ) {
-      var_dump($e);
+      return array("status" => "KO", "msg" => $e->getMessage());
     }
   }
   public function hashPassword($password) {
@@ -61,7 +50,16 @@ class User {
     return crypt($password, $salt);
   }
   public function checkPassword($password, $hashedPassword) {
-    return crypt($password, $hashedPassword) == $hashedPassword;
+    return crypt($password, $hashedPassword) === $hashedPassword;
   }
-
+  public function getAllUsers() {
+    try {
+      $database = new Database();
+      $selectSql = 'SELECT * FROM users';
+      $users = $database->query($selectSql, []);
+      return $users;
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
 }

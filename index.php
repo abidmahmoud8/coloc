@@ -1,12 +1,20 @@
 <?php
 $page = isset($_GET['page']) ? $_GET['page'] : NULL;
 require_once 'controller/UserController.php';
+require_once 'controller/AdminController.php';
+require_once 'config/Upload.php';
 try {
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+  $upload = new Upload;
+  $userController = new UserController;
+  $adminController = new AdminController;
+  $connected = $userController->isAuthenticated();
   if (!isset($page) || !$page) {
-    $var = "index";
+    $page = "index";
     include 'view/layouts/default.phtml';
   } else {
-    $var = $page;
     switch ($page) {
       case "products":
         include 'view/layouts/default.phtml';
@@ -15,14 +23,20 @@ try {
         include 'view/layouts/default.phtml';
         break;
       case "connexion":
-        $controller = new UserController();
-        $controller->handleRequest();
+        $controller = $userController;
+        $controller->handleRequest($page, $connected);
         break;
       case "admin":
-        include 'view/layouts/admin.phtml';
+        $isAdmin = true;
+        $controller = $adminController;
+        $controller->handleRequest($page, $isAdmin);
         break;
       case "profile":
         include 'view/layouts/profile.phtml';
+        break;
+      case "upload":
+        $controller = $upload;
+        $controller->handleRequest();
         break;
       default:
         include 'view/layouts/default.phtml';

@@ -13,9 +13,24 @@
             <span class="d-md-none">(216) 44251581</span>
           </a>
         </address>
+        <?php if(!$connected):?>
         <a href="?page=connexion" title="connexion" class="text-white">
           <i class="px-1 far fa-user"></i><span class="d-md-none">Connexion</span>
         </a>
+        <?php else: ?>
+        <div class="dropdown">
+          <span class="avatar-container">
+            <span class="px-2">Mahmoud</span>
+          </span> 
+          <div class="dropdown-content">
+            <ul>
+              <li class="p-2"><a href="/?page=admin">Tableau de board</a></li>
+              <li class="p-2"><a href="/?page=profile">Mon profil</a></li>
+              <li class="p-2"><a href="/?page=connexion&param=deconnect">Déconnexion</a></li>
+            </ul>
+          </div>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
     <div id="menu-bar">

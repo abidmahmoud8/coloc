@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coloc || Appartements partagés à louer</title>
-  <link href="../../public/js/index.js" rel="stylesheet">	
   <link href="../../public/css/products.css" rel="stylesheet">	
   <link href="../../public/css/login.css" rel="stylesheet">	
   <link href="../../public/css/theme.css" rel="stylesheet">	
   <link href="../../public/css/styles.css" rel="stylesheet">	
+  <link href="../../public/css/dropdown.css" rel="stylesheet">	
   <link href="../../public/css/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +18,7 @@
   ?>
   <main id="default-layout">
     <?php 
-      include 'view/pages/showcase/' .$var . '.phtml';
+      include 'view/pages/showcase/' .$page . '.phtml';
     ?>  
   </main>
   <?php 
@@ -27,5 +27,7 @@
 </body>
 <script type="text/javascript" src="../../public/js/classes/Request.class.js"></script>
 <script type="text/javascript" src="../../public/js/classes/User.class.js"></script>
+<script type="text/javascript" src="../../public/js/classes/Admin.class.js"></script>
+<script type="text/javascript" src="../../public/js/utilities.js"></script>
 <script type="text/javascript" src="../../public/js/index.js"></script>
 </html>

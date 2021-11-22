@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coloc || Appartements partagés à louer</title>
-  <link href="../../public/css/admin.css" rel="stylesheet">	
-  <link href="../../public/css/login.css" rel="stylesheet">	
-  <link href="../../public/css/styles.css" rel="stylesheet">	
-  <link href="../../public/css/theme.css" rel="stylesheet">	
-  <link href="../../public/css/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-  <main id="admin-layout">
-    <?php 
-      include 'view/components/admin/sidebar.phtml';
-    ?>
-    <?php 
-      include 'view/pages/admin/' .$var . '.phtml';
-    ?>
-  </main>
-  <?php 
-  ?>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coloc || Appartements partagés à louer</title>
+    <link href="../../public/js/index.js" rel="stylesheet">	
+    <link href="../../public/js/utilities.js" rel="stylesheet">	
+    <link href="../../public/css/admin.css" rel="stylesheet">	
+    <link href="../../public/css/login.css" rel="stylesheet">	
+    <link href="../../public/css/styles.css" rel="stylesheet">	
+    <link href="../../public/css/theme.css" rel="stylesheet">	
+    <link href="../../public/css/dropdown.css" rel="stylesheet">	
+    <link href="../../public/css/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <main id="admin-layout">
+      <?php 
+        include 'view/components/admin/sidebar.phtml';
+      ?>
+      <div id="admin">
+        <?php 
+          include 'view/components/admin/header.phtml';
+        ?>
+        <section class="px-2" id="<?=$param?>">
+          <?php 
+            include 'view/pages/admin/' .$param . '.phtml';
+          ?>
+        </section>
+      </div> 
+    </main>
+  </body>
+  <script type="text/javascript" src="../../public/js/classes/Request.class.js"></script>
+  <script type="text/javascript" src="../../public/js/classes/User.class.js"></script>
+  <script type="text/javascript" src="../../public/js/classes/Admin.class.js"></script>
+  <script type="text/javascript" src="../../public/js/utilities.js"></script>
+  <script type="text/javascript" src="../../public/js/index.js"></script>
 </html>
