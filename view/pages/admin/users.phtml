@@ -9,24 +9,18 @@
   </tr>
   <?php foreach ($users as $user) : ?>
     <tr>
-      <td><?= $user['id']; ?></td>
+      <td><?= $user['id_user']; ?></td>
       <td><?= $user['first_name'] . ' ' . $user['last_name']; ?></td>
       <td><?= $user['email']; ?></td>
       <td><?= $user['phone']; ?></td>
       <td>
-        <button data-user="<?= $user['id']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
-        <button data-user="<?= $user['id']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+        <button data-user="<?= $user['id_user']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
+        <button data-user="<?= $user['id_user']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
       </td>
-      <div id="<?= 'modal-' . $user['id']; ?>" class="modal">
+      <div id="<?= 'modal-' . $user['id_user']; ?>" class="modal">
         <div class="modal-content">
-          <?php 
-            include 'view/components/admin/profile.phtml';
-          ?>
           <span class="close">&times;</span>
-          <p><?= $user['id']; ?></p>
-          <p><?= $user['first_name'] . ' ' . $user['last_name']; ?></p>
-          <p><?= $user['email']; ?></p>
-          <p><?= $user['phone']; ?></p>
+          <?php include 'view/components/admin/profile.phtml'; ?>
         </div>
       </div>
     </tr>

@@ -3,9 +3,9 @@ require_once 'model/User.php';
 
 class UserController {
   // Création de la session utilisateur.
-  public function createUserSession($id, $first_name, $last_name, $email, $role, $phone)  {
+  public function createUserSession($id_user, $first_name, $last_name, $email, $role, $phone)  {
     $_SESSION['user'] = [
-      'id'    => $id,
+      'id_user'    => $id_user,
       'first_name' => $first_name,
       'last_name'  => $last_name,
       'email'     => $email,
@@ -56,7 +56,7 @@ class UserController {
       $user = new User;
       $connectdUser = $user->getUserByMail($email, $password);
       if($connectdUser["status"] === "OK") {
-        $this->createUserSession($connectdUser["user"]["id"], $connectdUser["user"]["first_name"], $connectdUser["user"]["last_name"], $connectdUser["user"]["email"], $connectdUser["user"]["phone"], $connectdUser["user"]["role"]);
+        $this->createUserSession($connectdUser["user"]["id_user"], $connectdUser["user"]["first_name"], $connectdUser["user"]["last_name"], $connectdUser["user"]["email"], $connectdUser["user"]["role"], $connectdUser["user"]["phone"]);
       }
       die(json_encode($connectdUser));
     } catch ( Exception $e ) {
@@ -70,7 +70,7 @@ class UserController {
       if($newUser["status"] === "OK") {
         $connectdUser = $user->getUserByMail($email, $password);
         if($connectdUser["status"] === "OK") {
-          $this->createUserSession($connectdUser["user"]["id"], $connectdUser["user"]["first_name"], $connectdUser["user"]["last_name"], $connectdUser["user"]["email"], $connectdUser["user"]["phone"], $connectdUser["user"]["role"]);
+          $this->createUserSession($connectdUser["user"]["id_user"], $connectdUser["user"]["first_name"], $connectdUser["user"]["last_name"], $connectdUser["user"]["email"], $connectdUser["user"]["role"], $connectdUser["user"]["phone"]);
         } else {
           return array("status" => "KO", "msg" => 'Problème de connexion avec le serveur');
         }

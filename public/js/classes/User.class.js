@@ -98,19 +98,19 @@ class User {
     }
   }
   initConnexion() {
-    var user = new User();
+    var self = this;
     let loginForm = document.querySelector('#connect > form');
     if(loginForm) {
       loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        user.login()
+        self.login()
       });
     }
     let registerForm = document.querySelector('#register > form');
     if(registerForm) {
       registerForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        user.register()
+        self.register()
       });
     }
     let inputs = document.querySelectorAll('input')

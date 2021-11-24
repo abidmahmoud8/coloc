@@ -1,6 +1,5 @@
 #admin-layout {
   display: flex;
-  box-shadow: inset 0 2px 5px 0 rgb(0 0 0 / 11%);
   padding-bottom: 1rem;
 }
 #admin-layout #sidebar {

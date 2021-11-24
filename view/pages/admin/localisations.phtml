@@ -1,38 +1,45 @@
 <h2>Liste des localisations</h2>
-<table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-</table>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'countries')" id="opened">Pays</button>
+  <button class="tablinks" onclick="openTab(event, 'states')">Etats</button>
+  <button class="tablinks" onclick="openTab(event, 'cities')">Villes</button>
+</div>
+<div id="countries" class="tabcontent">
+  <div class="title-container my-2">
+    <h4>Liste des Pays</h4>
+    <button class="btn-primary my-2 float-right" id="add-product-button" onclick="openModal('modal-add-country')">Ajouter</button>
+    <div id="modal-add-country" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+      </div>
+    </div>
+  </div>
+  <?php include 'view/components/admin/countries.phtml'; ?>
+</div>
+<div id="states" class="tabcontent">
+  <div class="title-container my-2">
+    <h4>Liste des Etats</h4>
+    <button class="btn-primary my-2 float-right" id="add-product-button" onclick="openModal('modal-add-state')">Ajouter</button>
+    <div id="modal-add-state" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>state</p>
+      </div>
+    </div>
+  </div>
+  <?php include 'view/components/admin/states.phtml'; ?>
+</div>
+<div id="cities" class="tabcontent">
+  <div class="title-container my-2">
+    <h4>Liste des Villes</h4>
+    <button class="btn-primary my-2 float-right" id="add-product-button" onclick="openModal('modal-add-cities')">Ajouter</button>
+    <div id="modal-add-cities" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>cities</p>
+      </div>
+    </div>
+  </div>
+  <?php include 'view/components/admin/cities.phtml'; ?>
+
+</div>

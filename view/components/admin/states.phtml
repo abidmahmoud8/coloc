@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>id</th>
+    <th>Etat</th>
+    <th>Pay</th>
+    <th>Actions</th>
+  </tr>
+  <?php foreach ($states as $state) : ?>
+    <tr>
+      <td><?= $state['id_state']; ?></td>
+      <td><?= $state['name']?></td>
+      <td><?= $state['country_name']; ?></td>
+      <td>
+        <button data-country="<?= $state['id_state']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
+        <button data-country="<?= $state['id_state']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+      </td>
+      <div id="<?= 'modal-' . $state['id_state']; ?>" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+        </div>
+      </div>
+    </tr>
+  <?php endforeach; ?>
+</table>

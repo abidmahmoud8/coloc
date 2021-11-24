@@ -40,7 +40,7 @@ function uploadRequest(e) {
   var files = e.target.files;
   for (let index = 0; index < files.length; index++) {
     const file = files[index];
-    formData.append("file-" + index, file);
+    formData.append(Date.now() + index, file);
   }
   xmlHttp.open( "POST", urlToSend, false ); // false for synchronous request
   // xmlHttp.setRequestHeader("Content-type", "multipart/form-data");

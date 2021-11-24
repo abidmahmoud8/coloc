@@ -1,12 +1,81 @@
-<div class="form-container container connexion-container">
+<div class="form-container container">
   <h4>Information générale</h4>
-  <div class="input-container py-2">
+  <div class="input-container">
     <label for="title">Titre</label>
-    <input type="text" name="title" placeholder="Titre de votre annonce" class="px-1"/>
+    <input type="text" name="title" placeholder="Titre de votre annonce" class="p-1"/>
+    <p id="title-error" class="error"></p>
   </div>
-  <div class="input-container py-2">
+  <div class="input-container type-input-container">
+    <p>Type d'annonce: </p>
+    <div class="mx-2">
+      <input type="radio" name="type" value="searcher" checked>
+      <label for="searcher">Chercheur</label>
+    </div>
+    <div class="mx-2">
+      <input type="radio" name="type" value="announcer">
+      <label for="announcer">Annonceur</label>
+    </div>
+  </div>
+  <div class="input-container">
     <label for="description">Description</label>
-    <textarea name="description" rows="5" cols="33" class="px-1" placeholder="Description de votre annonce..."></textarea> 
+    <textarea name="description" rows="5" cols="33" class="p-1" placeholder="Description de votre annonce..."></textarea> 
+    <p id="description-error" class="error"></p>
   </div>
+  <div class="input-container">
+    <label for="phone">Numéro de téléphone</label>
+    <input name="phone" class="p-1" type="number" placeholder="Entrez votre numéro de téléphone ..." value="<?= $user['phone']; ?>"/> 
+    <p id="phone-error" class="error"></p>
+  </div>
+  <div class="input-container">
+    <label for="price">Prix</label>
+    <input name="price" class="p-1" type="number" placeholder="Entrez le prix ..."/> 
+    <p id="price-error" class="error"></p>
+  </div>
+  <h4>Images</h4>
   <input type="file" id="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
+  <div class="input-container type-input-container my-1">
+    <input type="checkbox" name="show-image" value="show">
+    <label for="show-image"><span class="px-1">Afficher ma photo</span></label>
+  </div>
+  <div id="images-container">
+  </div>
+  <h4>Localisations</h4>
+  <div class="input-container">
+    <div class="select-container">
+      <label for="country">Pays</label>
+      <select name="country" id="country">
+        <option value="1">option 1</option>
+        <option value="2">option 2</option>
+        <option value="3">option 3</option>
+        <option value="4">option 4</option>
+        <option value="5">option 5</option>
+      </select>
+    </div>
+  </div>
+  <div class="input-container">
+    <div class="select-container">
+        <label for="state">Etat</label>
+        <select name="state" id="state">
+        <option value="1">option 1</option>
+        <option value="2">option 2</option>
+        <option value="3">option 3</option>
+        <option value="4">option 4</option>
+        <option value="5">option 5</option>
+      </select>
+    </div>
+  </div>
+  <div class="input-container">
+    <div class="select-container">
+        <label for="city">Ville</label>
+        <select name="city" id="city">
+        <option value="1">option 1</option>
+        <option value="2">option 2</option>
+        <option value="3">option 3</option>
+        <option value="4">option 4</option>
+        <option value="5">option 5</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn-primary my-2 float-right" id="add-product-button">Ajouter</button>
+
 </div>

@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>id</th>
+    <th>Pay</th>
+    <th>ISO Code</th>
+    <th>Devise</th>
+    <th>Actions</th>
+  </tr>
+  <?php foreach ($countries as $country) : ?>
+    <tr>
+      <td><?= $country['id_country']; ?></td>
+      <td><?= $country['name']?></td>
+      <td><?= $country['iso_code']; ?></td>
+      <td><?= $country['currency']; ?></td>
+      <td>
+        <button data-country="<?= $country['id_country']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
+        <button data-country="<?= $country['id_country']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+      </td>
+      <div id="<?= 'modal-' . $country['id_country']; ?>" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+        </div>
+      </div>
+    </tr>
+  <?php endforeach; ?>
+</table>

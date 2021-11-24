@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>id</th>
+    <th>Ville</th>
+    <th>Etat</th>
+    <th>Pay</th>
+    <th>Actions</th>
+  </tr>
+  <?php foreach ($cities as $city) : ?>
+    <tr>
+      <td><?= $city['id_city']; ?></td>
+      <td><?= $city['name']?></td>
+      <td><?= $city['state_name']; ?></td>
+      <td><?= $city['country_name']; ?></td>
+      <td>
+        <button data-country="<?= $city['id_city']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
+        <button data-country="<?= $city['id_city']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+      </td>
+      <div id="<?= 'modal-' . $city['id_city']; ?>" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+        </div>
+      </div>
+    </tr>
+  <?php endforeach; ?>
+</table>

@@ -17,9 +17,6 @@ class Request {
     xmlHttp.send( null );
     return xmlHttp.responseText; 
   }
-  uploadRequest(e) {
-    
-  }
   emailValidator(email) {
     let errors = [];
     var reg = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
