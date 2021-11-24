@@ -26,7 +26,6 @@ function openModal(idModal) {
   var modal = document.getElementById(idModal);
   modal.style.display = "block";
   window.onclick = function(event) {
-    console.log();
     if (event.target == modal || (event.target.classList && event.target.classList.contains("close"))) {
       modal.style.display = "none";
     }

@@ -59,7 +59,7 @@ class User {
         }
       }
     } catch (error) {
-      console.log({error});
+      console.error({error});
       var alert = document.getElementById("connexion-alert")
       alert.innerHTML = "Problème de connexion avec le serveur"
     }
