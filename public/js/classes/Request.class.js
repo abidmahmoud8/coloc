@@ -13,7 +13,16 @@ class Request {
   postRequest(page, params) {
     let xmlHttp = new XMLHttpRequest();
     var urlToSend = this.url + "?page=" + page + "&" + params
+    console.log(urlToSend);
     xmlHttp.open( "POST", urlToSend, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText; 
+  }
+  deleteRequest(page, params) {
+    let xmlHttp = new XMLHttpRequest();
+    var urlToSend = this.url + "?page=" + page + "&" + params
+    console.log({urlToSend});
+    xmlHttp.open( "DELETE", urlToSend, false ); // false for synchronous request
     xmlHttp.send( null );
     return xmlHttp.responseText; 
   }

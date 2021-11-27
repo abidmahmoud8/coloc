@@ -1,0 +1,58 @@
+<div id="add-city">
+  <?php if (isset($city)): ?>
+    <h4 class="my-2">Editer la ville: <strong><?=$city['name']?></strong></h4>
+  <?php else: ?>
+    <h4 class="my-2">Ajouter une ville</h4>
+  <?php endif; ?>
+  <div class="row">
+    <div class="input-container px-1">
+      <label for="country">Selectionner une pay</label>
+      <select id="country-selector" name="country" id="country">
+        <option>Selectionner une pay</option>
+        <?php foreach ($countries as $country) : ?>
+          <?php if (isset($city)): ?>
+           <option value="<?= $country['id_country']; ?>" <?php if ($country['id_country'] === $city['id_country']): ?>selected<?php endif; ?>><?= $country['name']; ?></option>
+          <?php else: ?>
+            <option value="<?= $country['id_country']; ?>"><?= $country['name']; ?></option>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </select>
+    </div>
+    <div class="input-container px-1">
+      <label for="state">Etat</label>
+      <?php if (isset($city)): ?>
+        <select id="state-selector" name="state" id="state">
+          <option>Selectionner une Etat</option>
+          <?php foreach ($states as $state) : ?>
+            <option value="<?= $state['id_state']; ?>" <?php if ($state['id_state'] === $city['id_state']): ?>selected<?php endif; ?>><?= $state['name']; ?></option>
+          <?php endforeach; ?>
+        </select>
+      <?php else: ?>
+        <select id="state-selector" name="state" id="state" disabled>
+          <option>Selectionner une Etat</option>
+        </select>
+      <?php endif; ?>
+    </div>
+    <div class="input-container px-1">
+      <label for="name">Nom de la ville</label>
+      <input type="text" name="name" placeholder="Nom de la pay" class="p-1" <?php if (isset($city)): ?> value="<?=$city['name']?>"<?php endif; ?>/>
+      <p id="name-error" class="error"></p>
+    </div>
+  </div>
+  <h4>Images</h4>
+  <input type="file" data-container="images-container-city" class="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
+  <div id="images-container-city" class="images-container">
+    <?php if (isset($city)) { foreach ($city['images'] as $image) : ?>
+      <div class="image-container">
+        <img src="<?=$image?>" alt="<?=$city['name']?>"/><span data-image="<?=$image?>" class="image-delete">X</span>
+      </div>
+    <?php endforeach; }?>
+  </div>
+  <div class="py-3">
+    <?php if (isset($city)): ?>
+      <button class="btn-primary float-right" data-city="<?= $city['id_city']; ?>" id="edit-city-button">Sauvegarder</button>
+    <?php else: ?>
+      <button class="btn-primary float-right" id="add-city-button">Sauvegarder</button>
+    <?php endif; ?>
+  </div>
+</div>

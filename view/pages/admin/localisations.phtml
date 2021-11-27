@@ -7,39 +7,20 @@
 <div id="countries" class="tabcontent">
   <div class="title-container my-2">
     <h4>Liste des Pays</h4>
-    <button class="btn-primary my-2 float-right" id="add-product-button" onclick="openModal('modal-add-country')">Ajouter</button>
-    <div id="modal-add-country" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-      </div>
-    </div>
+    <button class="btn-primary my-2 p-0 float-right"><a class="m-0 p-2" href="/?page=admin&param=country">Ajouter</a></button>
   </div>
   <?php include 'view/components/admin/countries.phtml'; ?>
 </div>
 <div id="states" class="tabcontent">
   <div class="title-container my-2">
     <h4>Liste des Etats</h4>
-    <button class="btn-primary my-2 float-right" id="add-product-button" onclick="openModal('modal-add-state')">Ajouter</button>
-    <div id="modal-add-state" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>state</p>
-      </div>
-    </div>
+    <button class="btn-primary my-2 p-0 float-right"><a class="m-0 p-2" href="/?page=admin&param=state">Ajouter</a></button>
   </div>
   <?php include 'view/components/admin/states.phtml'; ?>
 </div>
 <div id="cities" class="tabcontent">
   <div class="title-container my-2">
     <h4>Liste des Villes</h4>
-    <button class="btn-primary my-2 float-right" id="add-product-button" onclick="openModal('modal-add-cities')">Ajouter</button>
-    <div id="modal-add-cities" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>cities</p>
-      </div>
-    </div>
-  </div>
+    <button class="btn-primary my-2 p-0 float-right"><a class="m-0 p-2" href="/?page=admin&param=city">Ajouter</a></button>  </div>
   <?php include 'view/components/admin/cities.phtml'; ?>
-
 </div>

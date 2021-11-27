@@ -32,50 +32,45 @@
     <p id="price-error" class="error"></p>
   </div>
   <h4>Images</h4>
-  <input type="file" id="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
+  <input type="file" class="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
   <div class="input-container type-input-container my-1">
     <input type="checkbox" name="show-image" value="show">
     <label for="show-image"><span class="px-1">Afficher ma photo</span></label>
   </div>
-  <div id="images-container">
+  <div id="images-container" class="images-container">
   </div>
   <h4>Localisations</h4>
   <div class="input-container">
     <div class="select-container">
       <label for="country">Pays</label>
-      <select name="country" id="country">
-        <option value="1">option 1</option>
-        <option value="2">option 2</option>
-        <option value="3">option 3</option>
-        <option value="4">option 4</option>
-        <option value="5">option 5</option>
+      <select id="country-selector" name="country" id="country">
+        <option>Selectionner une pay</option>
+        <?php foreach ($countries as $country) : ?>
+          <option value="<?= $country['id_country']; ?>"><?= $country['name']; ?></option>
+        <?php endforeach; ?>
       </select>
     </div>
   </div>
   <div class="input-container">
     <div class="select-container">
         <label for="state">Etat</label>
-        <select name="state" id="state">
-        <option value="1">option 1</option>
-        <option value="2">option 2</option>
-        <option value="3">option 3</option>
-        <option value="4">option 4</option>
-        <option value="5">option 5</option>
-      </select>
+        <select id="state-selector" name="state" id="state" disabled>
+          <option>Selectionner une Etat</option>
+        </select>
     </div>
   </div>
   <div class="input-container">
     <div class="select-container">
-        <label for="city">Ville</label>
-        <select name="city" id="city">
-        <option value="1">option 1</option>
-        <option value="2">option 2</option>
-        <option value="3">option 3</option>
-        <option value="4">option 4</option>
-        <option value="5">option 5</option>
+      <label for="city">Ville</label>
+      <select id="city-selector" name="city" id="city" disabled>
+        <option>Selectionner une Ville</option>
       </select>
     </div>
   </div>
+  <div class="input-container">
+    <label for="zip">Code postale</label>
+    <input type="text" name="zip" placeholder="Code postale" class="p-1"/>
+    <p id="zip-error" class="error"></p>
+  </div>
   <button class="btn-primary my-2 float-right" id="add-product-button">Ajouter</button>
-
 </div>

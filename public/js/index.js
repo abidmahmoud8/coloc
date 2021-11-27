@@ -1,11 +1,12 @@
 const user = new User()
 const admin = new Admin()
 const product = new Product()
+const home = new Home()
+const image = new Image()
 document.addEventListener("DOMContentLoaded", function(event) { 
   user.initConnexion();
   admin.initAdmin();
   product.initProduct();
-  if(document.getElementById("opened")) {
-    document.getElementById("opened").click();
-  }
+  home.initHome()
+  image.initImage()
 });

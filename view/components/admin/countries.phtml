@@ -1,11 +1,14 @@
 <table>
-  <tr>
-    <th>id</th>
-    <th>Pay</th>
-    <th>ISO Code</th>
-    <th>Devise</th>
-    <th>Actions</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Pay</th>
+      <th>ISO Code</th>
+      <th>Devise</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
   <?php foreach ($countries as $country) : ?>
     <tr>
       <td><?= $country['id_country']; ?></td>
@@ -13,14 +16,16 @@
       <td><?= $country['iso_code']; ?></td>
       <td><?= $country['currency']; ?></td>
       <td>
-        <button data-country="<?= $country['id_country']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
-        <button data-country="<?= $country['id_country']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+        <button 
+          data-modal="country-<?= $country['id_country']; ?>" 
+          data-info='{"db": "countries", "id": "id_country", "value": "<?= $country['id_country']; ?>", "label": "Pay"}' 
+          class="btn-danger p-2"
+        >
+          <i class="fa fa-trash-alt"></i>Supprimer
+        </button>
+        <button class="btn-success p-0"><a class="m-0 p-2" href="/?page=admin&param=country&id_country=<?= $country['id_country']; ?>"><i class="fa fa-pen"></i>Editer</a></button>
       </td>
-      <div id="<?= 'modal-' . $country['id_country']; ?>" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-        </div>
-      </div>
     </tr>
   <?php endforeach; ?>
+  </tbody>
 </table>

@@ -68,6 +68,11 @@
   z-index: 1000;
   height: 67px;
 }
+.row > .input-container {
+  flex: 0 0 calc(100% / 3);
+  max-width: calc(100% / 3);
+} 
+
 @media only screen and (max-width: 992px) {
   #admin-layout #admin {
     width: 100%;
@@ -82,9 +87,17 @@
     transform: translateX(0);
     z-index: 2;
   }
+  .row > .input-container {
+    flex: 0 0 50%;
+    max-width: 50%;
+  } 
 }
 @media only screen and (max-width: 768px) {
   #toggle-sidebar {
     display: flex;
   }
+  .row > .input-container {
+    flex: 0 0 100%;
+    max-width: 100%;
+  } 
 }

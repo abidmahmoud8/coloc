@@ -24,7 +24,7 @@ function toggleSidebar() {
 }
 function openModal(idModal) {
   var modal = document.getElementById(idModal);
-  modal.style.display = "block";
+  modal.style.display = "flex";
   window.onclick = function(event) {
     if (event.target == modal || (event.target.classList && event.target.classList.contains("close"))) {
       modal.style.display = "none";

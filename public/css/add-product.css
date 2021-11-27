@@ -1,17 +1,18 @@
 #admin-layout .form-container .type-input-container {
   display: flex;
   align-items: center;
+  width: 100%;
 }
-#admin-layout #images-container {
+#admin-layout .images-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
-.form-container .input-container input[type='text'], 
-.form-container .input-container input[type='number'], 
-.form-container .input-container textarea, 
-.form-container .input-container select {
+.input-container input[type='text'], 
+.input-container input[type='number'], 
+.input-container textarea, 
+.input-container select {
   display: block;
   width: 100%;
   min-height: 2rem;
@@ -19,7 +20,7 @@
   border-radius: 0.4rem;
 }
 
-#admin-layout #images-container .image-container {
+#admin-layout .images-container .image-container {
   flex: 0 0 25%;
   max-width: 25%;
   height: 100px;
@@ -29,12 +30,12 @@
   align-items: center;
   position: relative;
 }
-#admin-layout #images-container .image-container img {
+#admin-layout .images-container .image-container img {
   max-width: 100%;
   max-height: 100px;
   height: auto;
 }
-#admin-layout #images-container .image-container span.image-delete {
+#admin-layout .images-container .image-container span.image-delete {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -50,19 +51,19 @@
   font-weight: bold;
 }
 @media only screen and (max-width: 1200px) {
-  #admin-layout #images-container .image-container {
+  #admin-layout .images-container .image-container {
     flex: 0 0 calc(100% / 3);
     max-width: calc(100% / 3);
   }
 }
 @media only screen and (max-width: 992px) {
-  #admin-layout #images-container .image-container {
+  #admin-layout .images-container .image-container {
     flex: 0 0 50%;
     max-width: 50%;
   }
 }
 @media only screen and (max-width: 768px) {
-  #admin-layout #images-container .image-container {
+  #admin-layout .images-container .image-container {
     flex: 0 0 100%;
     max-width: 100%;
   }

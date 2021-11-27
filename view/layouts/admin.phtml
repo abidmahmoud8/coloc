@@ -23,8 +23,11 @@
       <div id="admin">
         <?php 
           include 'view/components/admin/header.phtml';
-        ?>
-        <section class="px-2" id="<?=$param?>">
+          ?>
+        <section class="px-2 position-relative" id="<?=$param?>">
+          <?php 
+            include 'view/components/common/loader.phtml';
+          ?>
           <?php 
             include 'view/pages/admin/' .$param . '.phtml';
           ?>
@@ -33,6 +36,9 @@
     </main>
   </body>
   <script type="text/javascript" src="../../public/js/classes/Request.class.js"></script>
+  <script type="text/javascript" src="../../public/js/classes/Location.class.js"></script>
+  <script type="text/javascript" src="../../public/js/classes/Image.class.js"></script>
+  <script type="text/javascript" src="../../public/js/classes/Home.class.js"></script>
   <script type="text/javascript" src="../../public/js/classes/User.class.js"></script>
   <script type="text/javascript" src="../../public/js/classes/Product.class.js"></script>
   <script type="text/javascript" src="../../public/js/classes/Admin.class.js"></script>

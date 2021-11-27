@@ -1,24 +1,27 @@
 <table>
-  <tr>
-    <th>id</th>
-    <th>Etat</th>
-    <th>Pay</th>
-    <th>Actions</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Etat</th>
+      <th>Pay</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
   <?php foreach ($states as $state) : ?>
     <tr>
       <td><?= $state['id_state']; ?></td>
       <td><?= $state['name']?></td>
       <td><?= $state['country_name']; ?></td>
       <td>
-        <button data-country="<?= $state['id_state']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
-        <button data-country="<?= $state['id_state']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+        <button 
+          data-modal="state-<?= $state['id_state']; ?>" 
+          data-info='{"db": "states", "id": "id_state", "value": "<?= $state['id_state']; ?>", "label": "Etat"}' 
+          class="btn-danger p-2"
+        ><i class="fa fa-trash-alt"></i>Supprimer</button>
+        <button class="btn-success p-0"><a class="m-0 p-2" href="/?page=admin&param=state&id_state=<?= $state['id_state']; ?>"><i class="fa fa-pen"></i>Editer</a></button>
       </td>
-      <div id="<?= 'modal-' . $state['id_state']; ?>" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-        </div>
-      </div>
     </tr>
   <?php endforeach; ?>
+  </tbody>
 </table>

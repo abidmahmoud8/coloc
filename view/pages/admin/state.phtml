@@ -1,0 +1,45 @@
+<div id="add-state">
+  <?php if (isset($state)): ?>
+    <h4 class="my-2">Editer l'etat: <strong><?=$state['name']?></strong></h4>
+  <?php else: ?>
+    <h4 class="my-2">Ajouter une etat</h4>
+  <?php endif; ?>
+  <div class="row">
+    <div class="input-container">
+      <label for="country">Selectionner une pay</label>
+      <select id="country-selector" name="country" id="country">
+        <option>Selectionner une pay</option>
+        <?php foreach ($countries as $country) : ?>
+          <?php if (isset($state)): ?>
+           <option value="<?= $country['id_country']; ?>" <?php if ($country['id_country'] === $state['id_country']): ?>selected<?php endif; ?>><?= $country['name']; ?></option>
+          <?php else: ?>
+            <option value="<?= $country['id_country']; ?>"><?= $country['name']; ?></option>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </select>
+    </div>
+    <div class="input-container px-1">
+      <label for="country">Nom d'etat</label>
+      <input type="text" name="country" placeholder="Nom d'etat" class="p-1" <?php if (isset($state)): ?> value="<?=$state['name']?>"<?php endif; ?>/>
+      <p id="country-error" class="error"></p>
+    </div>
+    <div class="input-container px-1">
+      <h4>Images</h4>
+      <input type="file" data-container="images-container-state" class="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
+    </div>
+  </div>
+  <div id="images-container-state" class="images-container">
+    <?php if (isset($state)) { foreach ($state['images'] as $image) : ?>
+      <div class="image-container">
+        <img src="<?=$image?>" alt="<?=$state['name']?>"/><span data-image="<?=$image?>" class="image-delete">X</span>
+      </div>
+    <?php endforeach; }?>
+  </div>
+  <div class="py-3">
+    <?php if (isset($state)): ?>
+      <button class="btn-primary float-right" data-state="<?= $state['id_state']; ?>" id="edit-state-button">Sauvegarder</button>
+    <?php else: ?>
+      <button class="btn-primary float-right" id="add-state-button">Sauvegarder</button>
+    <?php endif; ?>
+  </div>
+</div>

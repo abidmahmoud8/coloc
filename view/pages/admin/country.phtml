@@ -1,0 +1,40 @@
+<div id="save-country">
+  <?php if (isset($country)): ?>
+    <h4 class="my-2">Editer la pay: <strong><?=$country['name']?></strong></h4>
+  <?php else: ?>
+    <h4 class="my-2">Ajouter une pay</h4>
+  <?php endif; ?>
+  <div class="row">
+    <div class="input-container px-1">
+      <label for="name">Nom de la pay</label>
+      <input type="text" name="name" placeholder="Nom de la pay" class="p-1" <?php if (isset($country)): ?> value="<?=$country['name']?>"<?php endif; ?>/>
+      <p id="name-error" class="error"></p>
+    </div>
+    <div class="input-container px-1">
+      <label for="iso_code">Code ISO de la pay</label>
+      <input maxlength="3" type="text" name="iso_code" placeholder="Code ISO de la pay" class="p-1" <?php if (isset($country)): ?> value="<?=$country['iso_code']?>"<?php endif; ?>/>
+      <p id="iso_code-error" class="error"></p>
+    </div>
+    <div class="input-container px-1">
+      <label for="currency">Devise de la pay</label>
+      <input type="text" name="currency" placeholder="Devise de la pay" class="p-1" <?php if (isset($country)): ?> value="<?=$country['currency']?>"<?php endif; ?>/>
+      <p id="currency-error" class="error"></p>
+    </div>
+  </div>
+  <h4>Images</h4>
+  <input type="file" data-container="images-container-country" class="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
+  <div id="images-container-country" class="images-container">
+    <?php if (isset($country)) { foreach ($country['images'] as $image) : ?>
+      <div class="image-container">
+        <img src="<?=$image?>" alt="<?=$country['name']?>"/><span data-image="<?=$image?>" class="image-delete">X</span>
+      </div>
+    <?php endforeach; }?>
+  </div>
+  <div class="py-3">
+    <?php if (isset($country)): ?>
+      <button class="btn-primary float-right" data-country="<?= $country['id_country']; ?>" id="edit-country-button">Sauvegarder</button>
+    <?php else: ?>
+      <button class="btn-primary float-right" id="add-country-button">Sauvegarder</button>
+    <?php endif; ?>
+  </div>
+</div>

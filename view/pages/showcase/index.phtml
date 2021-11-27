@@ -8,32 +8,23 @@
         <div class="px-2">
           <div class="select-container">
             <label for="country">Pays</label>
-            <select name="country" id="country">
-              <option value="1">option 1</option>
-              <option value="2">option 2</option>
-              <option value="3">option 3</option>
-              <option value="4">option 4</option>
-              <option value="5">option 5</option>
+            <select id="country-selector" name="country" id="country">
+              <option>Selectionner une pay</option>
+              <?php foreach ($countries as $country) : ?>
+                <option value="<?= $country['id_country']; ?>"><?= $country['name']; ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
           <div class="select-container">
-            <label for="state">Etat</label>
-            <select name="state" id="state">
-              <option value="1">option 1</option>
-              <option value="2">option 2</option>
-              <option value="3">option 3</option>
-              <option value="4">option 4</option>
-              <option value="5">option 5</option>
+            <label for="state">Selectionner une Etat</label>
+            <select id="state-selector" name="state" id="state" disabled>
+              <option>Selectionner une Etat</option>
             </select>
           </div>
           <div class="select-container">
             <label for="city">Ville</label>
-            <select name="city" id="city">
-              <option value="1">option 1</option>
-              <option value="2">option 2</option>
-              <option value="3">option 3</option>
-              <option value="4">option 4</option>
-              <option value="5">option 5</option>
+            <select id="city-selector" name="city" id="city" disabled>
+              <option>Selectionner une Ville</option>
             </select>
           </div>
         </div>

@@ -118,7 +118,10 @@ class User {
       inputs.forEach(input => {
         input.addEventListener('keyup', function(e) {
           var alert = document.getElementById("connexion-alert")
-          alert.innerHTML = ""
+          this.classList.remove('invalid')
+          if(alert) {
+            alert.innerHTML = ""
+          }
           input.nextElementSibling.innerHTML = "";
         });
       });

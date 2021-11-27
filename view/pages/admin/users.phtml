@@ -14,10 +14,16 @@
       <td><?= $user['email']; ?></td>
       <td><?= $user['phone']; ?></td>
       <td>
-        <button data-user="<?= $user['id_user']; ?>" class="btn-danger p-2"><i class="fa fa-trash-alt"></i>Supprimer</button>
-        <button data-user="<?= $user['id_user']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+        <button 
+          data-info='{"db": "users", "id": "id_user", "value": "<?= $user['id_user']; ?>", "label": "Etat"}' 
+          data-modal="user-<?= $user['id_user']; ?>"
+          class="btn-danger p-2"
+        >
+          <i class="fa fa-trash-alt"> </i>Supprimer
+        </button>
+        <button data-modal="user-<?= $user['id_user']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
       </td>
-      <div id="<?= 'modal-' . $user['id_user']; ?>" class="modal">
+      <div id="<?= 'modal-user-' . $user['id_user']; ?>" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
           <?php include 'view/components/admin/profile.phtml'; ?>

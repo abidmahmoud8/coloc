@@ -34,6 +34,12 @@ class Database
 		return $this->pdo->lastInsertId();
 	}
 
+	public function updateSql($sql, $values) {
+		$query = $this->pdo->prepare($sql);
+		$query->execute($values);
+		return $this->pdo->lastInsertId();
+	}
+
   public function query($sql, array $criteria = array()){
     $query = $this->pdo->prepare($sql);
     $query->execute($criteria);

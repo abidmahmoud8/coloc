@@ -71,8 +71,6 @@ class UserController {
         $connectdUser = $user->getUserByMail($email, $password);
         if($connectdUser["status"] === "OK") {
           $this->createUserSession($connectdUser["user"]["id_user"], $connectdUser["user"]["first_name"], $connectdUser["user"]["last_name"], $connectdUser["user"]["email"], $connectdUser["user"]["role"], $connectdUser["user"]["phone"]);
-        } else {
-          return array("status" => "KO", "msg" => 'Problème de connexion avec le serveur');
         }
       }
       die(json_encode($newUser));

@@ -9,7 +9,7 @@ class User {
     try {
       $database = new Database();
       $selectSql = 'SELECT * FROM users WHERE email = "'.$email .'"';
-      $user = $database->queryOne($selectSql, []);
+      $user = $database->queryOne($selectSql);
       if($user) {
         $hashedPassword = $user["password"];
         if($this->checkPassword($passwd, $hashedPassword)) {
@@ -29,12 +29,12 @@ class User {
       $database = new Database();
       $password = $this->hashPassword($password);
       $selectSql = 'SELECT * FROM users WHERE email = "'.$email .'"';
-      $user = $database->queryOne($selectSql, []);
+      $user = $database->queryOne($selectSql);
       if($user) {
         return array("status" => "KO", "msg" => "Cette adresse email est déjà utilisé");
       } else {
-        $insertSql = 'INSERT INTO users (last_name, first_name, email, password, phone, role) VALUES (?, ?, ?, ?, ?, ?)';
-        $newUser = $database->executeSql($insertSql, [$first_name, $last_name, $email, $password, $phone, 'customer']);
+        $executeSql = 'INSERT INTO users (last_name, first_name, email, password, phone, role) VALUES (?, ?, ?, ?, ?, ?)';
+        $newUser = $database->executeSql($executeSql, [$first_name, $last_name, $email, $password, $phone, 'customer']);
         if($newUser) {
           return array("status" => "OK"); 
         } else {
