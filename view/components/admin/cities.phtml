@@ -23,14 +23,8 @@
         >
           <i class="fa fa-trash-alt"></i>Supprimer
         </button>
-        <button data-modal="city-<?= $city['id_city']; ?>" class="btn-success p-2"><i class="fa fa-pen"></i>Modifier</button>
+        <button class="btn-success p-0"><a class="m-0 p-2" href="/?page=admin&param=city&id_city=<?= $city['id_city']; ?>"><i class="fa fa-pen"></i>Editer</a></button>
       </td>
-      <div id="<?= 'modal-city-' . $city['id_city']; ?>" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <?php include 'view/components/admin/add-city.phtml'; ?>
-        </div>
-      </div>
     </tr>
   <?php endforeach; ?>
   </tbody>

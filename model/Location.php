@@ -103,8 +103,8 @@ class Location {
   public function insertCountry($name, $iso_code, $currency, $images) {
     try {
       $database = new Database();
-      $insertCountry = 'INSERT INTO countries (name, iso_code, currency) VALUES (?, ?, ?)';
-      $newCountry = $database->executeSql($insertCountry, [$name, $iso_code, $currency]);
+      $insertCountrySql = 'INSERT INTO countries (name, iso_code, currency) VALUES (?, ?, ?)';
+      $newCountry = $database->executeSql($insertCountrySql, [$name, $iso_code, $currency]);
       if($newCountry) {
         foreach ($images as $image) {
           $insertImage = 'INSERT INTO images (path, query) VALUES (?, ?)';
@@ -122,12 +122,80 @@ class Location {
     try {
       $database = new Database();
       $sql = 'UPDATE countries SET name="'.$name.'", iso_code="'.$iso_code.'", currency="'.$currency.'" WHERE id_country='.$id_country;
-      $updatedCountry = $database->executeSql($sql, []);
+      $updatedCountrySql = $database->executeSql($sql, []);
       $deleteImagesSql = 'DELETE FROM images WHERE query="id_country:' . $id_country .'"';
       $database->executeSql($deleteImagesSql, []);
       foreach ($images as $image) {
         $insertImage = 'INSERT INTO images (path, query) VALUES (?, ?)';
         $newImage = $database->executeSql($insertImage, [$image, 'id_country:'.$id_country]);
+      }
+      return array("status" => "OK"); 
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
+  public function insertState($name, $id_country, $images) {
+    try {
+      $database = new Database();
+      $insertStateSql = 'INSERT INTO states (name, id_country) VALUES (?, ?)';
+      $newState = $database->executeSql($insertStateSql, [$name, $id_country]);
+      if($newState) {
+        foreach ($images as $image) {
+          $insertImage = 'INSERT INTO images (path, query) VALUES (?, ?)';
+          $newImage = $database->executeSql($insertImage, [$image, 'id_state:'.$newState]);
+        }
+        return array("status" => "OK"); 
+      } else {
+        return array("status" => "KO", "msg" => "Problème avec la connexion avec le serveur");
+      }
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
+  public function updateState($name, $id_country, $images, $id_state) {
+    try {
+      $database = new Database();
+      $sql = 'UPDATE states SET name="'.$name.'", id_country="'.$id_country.'" WHERE id_state='.$id_state;
+      $updatedState = $database->executeSql($sql, []);
+      $deleteImagesSql = 'DELETE FROM images WHERE query="id_state:' . $id_state .'"';
+      $database->executeSql($deleteImagesSql, []);
+      foreach ($images as $image) {
+        $insertImage = 'INSERT INTO images (path, query) VALUES (?, ?)';
+        $newImage = $database->executeSql($insertImage, [$image, 'id_state:'.$id_state]);
+      }
+      return array("status" => "OK"); 
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
+  public function insertCity($name, $id_state, $images) {
+    try {
+      $database = new Database();
+      $insertCitySql = 'INSERT INTO cities (name, id_state) VALUES (?, ?)';
+      $newState = $database->executeSql($insertCitySql, [$name, $id_state]);
+      if($newState) {
+        foreach ($images as $image) {
+          $insertImage = 'INSERT INTO images (path, query) VALUES (?, ?)';
+          $newImage = $database->executeSql($insertImage, [$image, 'id_state:'.$newState]);
+        }
+        return array("status" => "OK"); 
+      } else {
+        return array("status" => "KO", "msg" => "Problème avec la connexion avec le serveur");
+      }
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
+  public function updateCity($name, $id_state, $images, $id_city) {
+    try {
+      $database = new Database();
+      $sql = 'UPDATE cities SET name="'.$name.'", id_state="'.$id_state.'" WHERE id_city='.$id_city;
+      $updatedCity = $database->executeSql($sql, []);
+      $deleteImagesSql = 'DELETE FROM images WHERE query="id_city:' . $id_city .'"';
+      $database->executeSql($deleteImagesSql, []);
+      foreach ($images as $image) {
+        $insertImage = 'INSERT INTO images (path, query) VALUES (?, ?)';
+        $newImage = $database->executeSql($insertImage, [$image, 'id_city:'.$id_city]);
       }
       return array("status" => "OK"); 
     } catch ( Exception $e ) {

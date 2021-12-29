@@ -1,4 +1,4 @@
-<div id="add-city">
+<div id="save-city">
   <?php if (isset($city)): ?>
     <h4 class="my-2">Editer la ville: <strong><?=$city['name']?></strong></h4>
   <?php else: ?>
@@ -8,7 +8,7 @@
     <div class="input-container px-1">
       <label for="country">Selectionner une pay</label>
       <select id="country-selector" name="country" id="country">
-        <option>Selectionner une pay</option>
+        <option option value="">Selectionner une pay</option>
         <?php foreach ($countries as $country) : ?>
           <?php if (isset($city)): ?>
            <option value="<?= $country['id_country']; ?>" <?php if ($country['id_country'] === $city['id_country']): ?>selected<?php endif; ?>><?= $country['name']; ?></option>
@@ -17,21 +17,24 @@
           <?php endif; ?>
         <?php endforeach; ?>
       </select>
+      <p id="id_country-error" class="error"></p>
     </div>
     <div class="input-container px-1">
       <label for="state">Etat</label>
       <?php if (isset($city)): ?>
         <select id="state-selector" name="state" id="state">
-          <option>Selectionner une Etat</option>
+          <option value="">Selectionner une Etat</option>
           <?php foreach ($states as $state) : ?>
             <option value="<?= $state['id_state']; ?>" <?php if ($state['id_state'] === $city['id_state']): ?>selected<?php endif; ?>><?= $state['name']; ?></option>
           <?php endforeach; ?>
         </select>
-      <?php else: ?>
-        <select id="state-selector" name="state" id="state" disabled>
-          <option>Selectionner une Etat</option>
-        </select>
+        <p id="id_state-error" class="error"></p>
+        <?php else: ?>
+          <select id="state-selector" name="state" id="state" disabled>
+            <option value="">Selectionner une Etat</option>
+          </select>
       <?php endif; ?>
+      <p id="id_state-error" class="error"></p>
     </div>
     <div class="input-container px-1">
       <label for="name">Nom de la ville</label>

@@ -1,0 +1,126 @@
+<div class="form-container container">
+  <h4>Information générale</h4>
+  <div class="input-container">
+    <label for="title">Titre</label>
+    <input type="text" name="title" placeholder="Titre de votre annonce" class="p-1" <?php if (isset($product)): ?> value="<?=$product['title']?>"<?php endif; ?>/>
+    <p id="title-error" class="error"></p>
+  </div>
+  <div class="input-container type-input-container">
+    <p>Type d'annonce: </p>
+    <?php if (!isset($product)): ?>
+    <div class="mx-2">
+      <input type="radio" name="type" value="searcher" checked>
+      <label for="searcher">Chercheur</label>
+    </div>
+    <div class="mx-2">
+      <input type="radio" name="type" value="announcer">
+      <label for="announcer">Annonceur</label>
+    </div>
+    <?php else: ?>
+      <div class="mx-2">
+        <input type="radio" name="type" value="searcher" <?php if ($product["type"] === "searcher"): ?> checked<?php endif; ?>>
+        <label for="searcher">Chercheur</label>
+      </div>
+      <div class="mx-2">
+        <input type="radio" name="type" value="announcer" <?php if ($product["type"] === "announcer"): ?> checked<?php endif; ?>>
+        <label for="announcer">Annonceur</label>
+      </div>
+    <?php endif; ?>
+  </div>
+  <div class="input-container">
+    <label for="description">Description</label>
+    <textarea name="description" rows="5" cols="33" class="p-1" placeholder="Description de votre annonce..." ><?php if (isset($product)) {echo $product['description'];}?></textarea> 
+    <p id="description-error" class="error"></p>
+  </div>
+  <div class="input-container">
+    <label for="phone">Numéro de téléphone</label>
+    <input name="phone" class="p-1" type="number" placeholder="Entrez votre numéro de téléphone ..." value="<?php if (isset($product)) {echo $product['phone'];} else {echo $user['phone'];}?>"/> 
+    <p id="phone-error" class="error"></p>
+  </div>
+  <div class="input-container">
+    <label for="price">Prix</label>
+    <input name="price" class="p-1" type="number" placeholder="Entrez le prix ..." <?php if (isset($product)): ?> value="<?=$product['price']?>"<?php endif; ?>/> 
+    <p id="price-error" class="error"></p>
+  </div>
+  <div class="input-container type-input-container my-1">
+    <input type="checkbox" name="show-profile" value="show" <?php if (isset($product) && $product["show_profile"] === "1"): ?> checked<?php endif; ?>>
+    <label for="show-profile"><span class="px-1">Afficher mon profile</span></label>
+  </div>
+  <h4>Images</h4>
+  <input type="file" class="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
+  <div id="images-container" class="images-container">
+    <?php if (isset($product)) { foreach ($product['images'] as $image) : ?>
+      <div class="image-container">
+        <img src="<?=$image?>" alt="<?=$product['title']?>"/><span data-image="<?=$image?>" class="image-delete">X</span>
+      </div>
+    <?php endforeach; }?>
+  </div>
+  <h4>Localisations</h4>
+  <div class="alert" id="location-alert">
+  </div>
+  <div class="input-container">
+    <div class="select-container">
+      <label for="country">Pays</label>
+      <select id="country-selector" name="country" id="country">
+        <option value="">Selectionner une pay</option>
+        <?php foreach ($countries as $country) : ?>
+          <option 
+            value="<?= $country['id_country']; ?>" 
+            <?php if (isset($product) && isset($product["id_country"]) && $product['id_country'] === $country['id_country']): ?>selected<?php endif; ?>
+          >
+            <?= $country['name']; ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
+      <!-- <p id="country-error" class="error"></p> -->
+    </div>
+  </div>
+  <div class="input-container">
+    <div class="select-container">
+      <label for="state">Etat</label>
+      <select id="state-selector" name="state" id="state" <?php if (!isset($product) || !isset($states)) :?>disabled <?php endif; ?>>
+        <option value="">Selectionner une Etat</option>
+        <?php if (isset($product) && isset($states)) :?>
+          <?php foreach ($states as $state) : ?>
+            <option 
+              value="<?= $state['id_state']; ?>" 
+              <?php if (isset($product) && isset($product["id_state"]) && $product['id_state'] === $state['id_state']): ?>selected<?php endif; ?>
+            >
+              <?= $state['name']; ?>
+            </option>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </select>
+      <!-- <p id="state-error" class="error"></p> -->
+    </div>
+  </div>
+  <div class="input-container">
+    <div class="select-container">
+      <label for="city">Ville</label>
+      <select id="city-selector" name="city" id="city" <?php if (!isset($product) || !isset($cities)) :?>disabled <?php endif; ?>>
+        <option value="">Selectionner une Ville</option>
+        <?php if (isset($product) && isset($cities)) :?>
+          <?php foreach ($cities as $city) : ?>
+            <option 
+              value="<?= $city['id_city']; ?>" 
+              <?php if (isset($product) && isset($product["id_city"]) && $product['id_city'] === $city['id_city']): ?>selected<?php endif; ?>
+            >
+              <?= $city['name']; ?>
+            </option>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </select>
+      <!-- <p id="city-error" class="error"></p> -->
+    </div>
+  </div>
+  <div class="input-container">
+    <label for="zip">Code postale</label>
+    <input type="text" name="zip" placeholder="Code postale" class="p-1" <?php if (isset($product) && isset($product["zip"])): ?> value="<?=$product['zip']?>"<?php endif; ?>/>
+    <!-- <p id="zip-error" class="error"></p> -->
+  </div>
+  <?php if (isset($product)): ?>
+    <button class="btn-primary my-2 float-right" data-product="<?= $product['id_product']; ?>" id="edit-product-button">Editer</button>
+    <?php else: ?>
+      <button class="btn-primary my-2 float-right" id="add-product-button">Ajouter</button>
+    <?php endif; ?>
+</div>

@@ -26,14 +26,29 @@ class UserController {
           $this->register($_GET['first_name'], $_GET['last_name'], $_GET['email'], $_GET['password'], $_GET['phone']);
         }
       } else {
-        if ( $param !== 'deconnect' ) {
+        if ( ($param !== 'deconnect') && ($param !== 'connected-user') ) {
           header('Location: index.php');
         } elseif ( $param === 'deconnect' ) {
           $this->deconnect();
+        } elseif ( $param === 'connected-user' ) {
+          if(isset($_GET['show-infos'])) {
+            $this->getUser(true);
+          } else {
+            $this->getUser(false);
+          }
         }
       }
     } catch ( Exception $e ) {
       throw new Exception($e->getMessage());
+    }
+  }
+  public function getUser($showInfos) {
+    try {
+      $user = new User;
+      $connectdUser = $user->getUserInfo($showInfos);
+      die(json_encode($connectdUser));
+    } catch ( Exception $e ) {
+      throw new Exception("Utilisateur non trouvé");
     }
   }
   public function deconnect() {

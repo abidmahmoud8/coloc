@@ -1,4 +1,4 @@
-<div id="add-state">
+<div id="save-state">
   <?php if (isset($state)): ?>
     <h4 class="my-2">Editer l'etat: <strong><?=$state['name']?></strong></h4>
   <?php else: ?>
@@ -8,7 +8,7 @@
     <div class="input-container">
       <label for="country">Selectionner une pay</label>
       <select id="country-selector" name="country" id="country">
-        <option>Selectionner une pay</option>
+        <option value="">Selectionner une pay</option>
         <?php foreach ($countries as $country) : ?>
           <?php if (isset($state)): ?>
            <option value="<?= $country['id_country']; ?>" <?php if ($country['id_country'] === $state['id_country']): ?>selected<?php endif; ?>><?= $country['name']; ?></option>
@@ -17,11 +17,12 @@
           <?php endif; ?>
         <?php endforeach; ?>
       </select>
+      <p id="id_country-error" class="error"></p>
     </div>
     <div class="input-container px-1">
-      <label for="country">Nom d'etat</label>
-      <input type="text" name="country" placeholder="Nom d'etat" class="p-1" <?php if (isset($state)): ?> value="<?=$state['name']?>"<?php endif; ?>/>
-      <p id="country-error" class="error"></p>
+      <label for="name">Nom d'etat</label>
+      <input type="text" name="name" placeholder="Nom d'etat" class="p-1" <?php if (isset($state)): ?> value="<?=$state['name']?>"<?php endif; ?>/>
+      <p id="name-error" class="error"></p>
     </div>
     <div class="input-container px-1">
       <h4>Images</h4>

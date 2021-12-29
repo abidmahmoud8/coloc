@@ -4,161 +4,131 @@
       <div id="sidebar-filter">
         <button id="change-search-btn" type="button">
           <span>
-            <h1 class="strong">Pneu 205/55 R16 91V été </h1>
+            <h1 class="strong">Rechereche du colocation </h1>
           </span>
           <span>Modifier mon choix</span>
         </button>
-        <div id="sidebar-filter-container" class="px-2">
-          <h4>Les plus performants</h4>
-          <div id="optional-filter" class="form-group">
-            <div class="form-check mt-2 pl-0">
-              <label class="check form-check-label d-flex" id="runFlatLabel">Pneus anti crevaison</label>
-              <input class="form-check-input" type="checkbox" value="is_run_flat">
-              <span class="checkmark"></span>
+        <div id="sidebar-filter-container" class="card px-2">
+          <h4>Localisation: </h4>
+          <div class="form-group py-2">
+            <div class="input-container">
+              <div class="select-container">
+                <label for="country">Pay</label>
+                <select id="country-selector" name="country" id="country">
+                  <option value="">Selectionner une pay</option>
+                  <?php foreach ($countries as $country) : ?>
+                    <option 
+                      value="<?= $country['id_country']; ?>" 
+                      <?php if (isset($country) && isset($country["id_country"]) && $id_country === $country['id_country']): ?>selected<?php endif; ?>
+                    >
+                      <?= $country['name']; ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
             </div>
-            <div class="form-check mt-2 pl-0">
-              <label class="check form-check-label d-flex" id="runFlatLabel">Pneus anti crevaison</label>
-              <input class="form-check-input" type="checkbox" value="is_run_flat">
-              <span class="checkmark"></span>
+            <div class="input-container">
+              <div class="select-container">
+                <label for="state">Etat</label>
+                <select id="state-selector" name="state" id="state" <?php if (!isset($states)) :?>disabled <?php endif; ?>>
+                  <option value="">Selectionner une Etat</option>
+                  <?php if (isset($states)) :?>
+                    <?php foreach ($states as $state) : ?>
+                      <option 
+                        value="<?= $state['id_state']; ?>" 
+                        <?php if (isset($state) && isset($state["id_state"]) && $state['id_state'] === $id_state): ?>selected<?php endif; ?>
+                      >
+                        <?= $state['name']; ?>
+                      </option>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
+                </select>
+              </div>
             </div>
-            <div class="form-check mt-2 pl-0">
-              <label class="check form-check-label d-flex" id="runFlatLabel">Pneus anti crevaison</label>
-              <input class="form-check-input" type="checkbox" value="is_run_flat">
-              <span class="checkmark"></span>
+            <div class="input-container">
+              <div class="select-container">
+                <label for="city">Ville</label>
+                <select id="city-selector" name="city" id="city" <?php if (!isset($cities)) :?>disabled <?php endif; ?>>
+                  <option value="">Selectionner une Ville</option>
+                  <?php if (isset($cities)) :?>
+                    <?php foreach ($cities as $city) : ?>
+                      <option 
+                        value="<?= $city['id_city']; ?>" 
+                        <?php if (isset($city) && isset($city["id_city"]) && $city['id_city'] === $id_city): ?>selected<?php endif; ?>
+                      >
+                        <?= $city['name']; ?>
+                      </option>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
+                </select>
+              </div>
             </div>
           </div>
-          <hr/>
+          <h4>Type d'annonce:</h4>
+          <div class="form-group py-2">
+            <div class="input-container">
+              <input type="radio" name="type" value="searcher" <?php if ($type && $type === "searcher"): ?> checked<?php endif; ?>>
+              <label for="searcher">Chercheur</label>
+            </div>
+            <div class="input-container">
+              <input type="radio" name="type" value="announcer" <?php if ($type && $type === "announcer"): ?> checked<?php endif; ?>>
+              <label for="announcer">Annonceur</label>
+            </div>
+          </div>
+          <h4>Prix:</h4>
+          <div class="form-group py-2">
+            <div class="input-container">
+              <div class="range-slider">
+                <span>Min <input type="number" value="0" min="0" max="100000" step="500"> Max <input type="number" value="100000" min="0" max="100000" step="500"></span>
+                <input value="0" min="0" max="100000" step="500" type="range" name="price-min">
+                <input value="100000" min="0" max="100000" step="500" type="range" name="price-max">
+                <!-- <svg width="100%" height="24">
+                  <line x1="4" y1="0" x2="480" y2="0" stroke="#444" stroke-width="12" stroke-dasharray="1 28"></line>
+                </svg> -->
+              </div>
+            </div>
+          </div>
+          <h4>Code Postale:</h4>
+          <div id="zip-filter" class="form-group py-2">
+            <div class="input-container">
+              <input type="text" name="zip" placeholder="Code postale" class="w-100 p-1" <?php if (isset($zip)): ?> value="<?=$zip?>"<?php endif; ?>/>
+            </div>
+          </div>
+          <div id="btn-filter" class="py-2">
+            <button class="btn-primary">Appliquer</button>
+          </div>
         </div>
       </div>
       <div id="products-container" class="row">
+      <?php foreach ($products as $product) : ?>
         <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
+          <div class="card">
+            <div class="product-title">
+              <h5> <?= $product["title"] ?></h5>
+            </div>
+            <div class="img-container">
+              <img <?php if($product["images"] && count($product["images"])) : ?> src="<?= $product["images"][0]["path"] ?>" <?php else : ?> src="/assets/no_img.jpg" <?php endif; ?> alt="">
+            </div>
+            <div class="details-container">
+              <div class="type-product"><?php if ($product["type"] === "searcher"): ?>Chercheur <?php elseif ($product["type"] === "announcer") : ?> Annonceur<?php endif?></div>
+              <p><strong><?= $product["price"] ?></strong></p>
+              <p><small><?= strlen($product["description"]) > 50 ? substr($product["description"], 0 , 50) . '...' : $product["description"] ?></small></p>
+              <a href=""><strong>Voir détails</strong></a>
+            </div>
           </div>
         </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
-        <article class="product px-1">
-          <div class="product-title">
-            <h5>Appartement à louer</h5>
-          </div>
-          <div class="img-container">
-            <img src="https://strapid.spid-tech.com/uploads/thumbnail_3286340964913_4_14e92de75b.png" alt="">
-          </div>
-          <div class="details-container">
-            <div class="type-product">Appartement à louer</div>
-            <p><strong>66€</strong></p>
-            <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, dolores?</small></p>
-            <a href=""><strong>Voir détails</strong></a>
-          </div>
-        </article>
+      <?php endforeach; ?>  
+      <div id="products-pagination">
+        <ul>
+          <li><a class="active" href="">1</a></li>
+          <li><a href="">2</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="">4</a></li>
+          <li><a href="">5</a></li>
+          <li><a href="">6</a></li>
+        </ul>
       </div>
     </div>
-  </div>
+    </div>
   </div>
 </section>

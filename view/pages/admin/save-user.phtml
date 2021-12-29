@@ -1,0 +1,54 @@
+<div class="form-container container">
+  <h4>Information générale</h4>
+  <div class="input-container">
+    <label for="first_name">Nom</label>
+    <input type="text" name="first_name" placeholder="Entrez votre nom" class="p-1" value="<?=$user['first_name']?>"/>
+    <p id="first_name-error" class="error"></p>
+  </div>
+  <div class="input-container">
+    <label for="last_name">Prénom</label>
+    <input type="text" name="last_name" placeholder="Entrez votre nom" class="p-1" value="<?=$user['last_name']?>"/>
+    <p id="last_name-error" class="error"></p>
+  </div>
+  <div class="input-container">
+    <label for="phone">Numéro de téléphone</label>
+    <input name="phone" class="p-1" type="number" placeholder="Entrez votre numéro de téléphone ..." value="<?=$user['phone']?>"/> 
+    <p id="phone-error" class="error"></p>
+  </div>
+  <h4>Images</h4>
+  <input type="file" class="image-uploads" name="image-uploads" accept=".jpg, .jpeg, .png" multiple>
+  <div id="images-container" class="images-container">
+    <?php if (isset($user['images']) && count($user['images'])) { foreach ($user['images'] as $image) : ?>
+      <div class="image-container">
+        <img src="<?=$image?>" alt="<?=$user['title']?>"/><span data-image="<?=$image?>" class="image-delete">X</span>
+      </div>
+    <?php endforeach; }?>
+  </div>
+  <h4>
+    
+  </h4>
+  <div class="input-container">
+    <label for="address">address</label>
+    <textarea name="address" rows="5" cols="33" class="p-1" placeholder="address de votre annonce..." ><?php if (isset($user['address'])) {echo $user['address'];}?></textarea> 
+    <p id="address-error" class="error"></p>
+  </div>
+  <div class="input-container">
+    <label for="city">Ville</label>
+    <input type="text" name="city" placeholder="Ville" class="p-1" <?php if (isset($user["city"])): ?> value="<?=$user['city']?>"<?php endif; ?>/>
+    <p id="city-error" class="error"></p>
+  </div>
+  <div class="input-container">
+    <label for="city">Pay</label>
+    <input type="text" name="city" placeholder="Pay" class="p-1" <?php if (isset($user["country"])): ?> value="<?=$user['city']?>"<?php endif; ?>/>
+    <p id="city-error" class="error"></p>
+  </div>
+  <div class="input-container px-1">
+    <label for="role">Role</label>
+      <select id="role-selector" name="role" id="role">
+        <option value="customer" <?php if ($user['role'] === 'customer'): ?>selected<?php endif; ?>>Client</option>
+        <option value="admin" <?php if ($user['role'] === 'admin'): ?>selected<?php endif; ?>>Admin</option>
+      </select>
+    <p id="role-error" class="error"></p>
+  </div>
+  <button class="btn-primary my-2 float-right" data-user="<?= $user['id_user']; ?>" id="edit-user-button">Editer</button>
+</div>

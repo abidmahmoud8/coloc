@@ -62,4 +62,62 @@ class User {
       return array("status" => "KO", "msg" => $e->getMessage());
     }
   }
+  public function getUserInfo($showInfos) {
+    try {
+      $user = $_SESSION['user'];
+      if($showInfos) {
+        $database = new Database();
+        $selectSql = 'SELECT * FROM users WHERE id_user = "'.$user["id_user"] .'"';
+        $user = $database->queryOne($selectSql);
+        if(!$user) {
+          return array("status" => "KO", "msg" => "Utilisateur non trouvé");
+        }
+      }
+      return $user;
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
+  public function getSingleUser($id_user) {
+    try {
+      $database = new Database();
+      $selectSql = 'SELECT * FROM users WHERE id_user = "'.$id_user .'"';
+      $user = $database->queryOne($selectSql);
+      if(!$user) {
+        return array("status" => "KO", "msg" => "Utilisateur non trouvé");
+      }
+      return $user;
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
+  public function updateUser(
+    $id_user,
+    $first_name,
+    $last_name,
+    $adress,
+    $city,
+    $country,
+    $email,
+    $role,
+    $images,
+    $phone,
+    $password,
+    $newPassword
+  ) {
+    try {
+      $database = new Database();
+      $sql = 'UPDATE users SET first_name="'.$first_name.'", last_name="'.$last_name.'", adress="'.$adress.'", city="'.$city.'", city="'.$city.'", country="'.$country.'", email="'.$email.'", role="'.$role.'", phone="'.$phone.'" WHERE id_user='.$id_user;
+      $updatedCountrySql = $database->executeSql($sql, []);
+      $deleteImagesSql = 'DELETE FROM images WHERE query="id_user:' . $id_user .'"';
+      $database->executeSql($deleteImagesSql, []);
+      foreach ($images as $image) {
+        $insertImage = 'INSERT INTO images (path, query) VALUES (?, ?)';
+        $newImage = $database->executeSql($insertImage, [$image, 'id_user:'.$id_user]);
+      }
+      return array("status" => "OK"); 
+    } catch ( Exception $e ) {
+      return array("status" => "KO", "msg" => $e->getMessage());
+    }
+  }
 }

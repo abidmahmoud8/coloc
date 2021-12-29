@@ -2,6 +2,7 @@
 require_once 'model/User.php';
 require_once 'model/Location.php';
 require_once 'model/Admin.php';
+require_once 'model/Product.php';
 class AdminController {
   public function handleRequest($page, $isAdmin) {
     $param = isset($_GET['param']) ? $_GET['param'] : NULL;
@@ -10,17 +11,33 @@ class AdminController {
       $user = $_SESSION['user'];
       if($isAdmin) {
         $location = new Location;
+        $productModel = new Product;
         if (!$param) {
           $param = "dashboard";
         } elseif($param === "users") {
           $users = $this->getUsersList();
         } elseif($param === "localisations") {
-          $countries = $this->getCountriesList();
-          $states = $this->getStatesList();
-          $cities = $this->getCitiesList();
-        } elseif($param === "add-product") {
-          $countries = $this->getCountriesList();
-        } elseif($param === "country") {
+          $countries = $location->getCountries();
+          $states = $location->getStates(null);
+          $cities = $location->getCities(null);
+        } elseif($param === "save-product") {
+          $countries = $location->getCountries();
+          if(isset($_GET['id_product'])) {
+            $product = $productModel->getProduct($_GET['id_product']);
+            if(!!$product["id_country"]) {
+              $states = $location->getStates($product['id_country']);
+              if(!!$product["id_city"]) {
+                $cities = $location->getCities($product['id_state']);
+              }
+            }
+          }
+        } elseif($param === "products") {
+          $products = $productModel->getProducts(null);
+          
+        } elseif($param === "save-user") {
+          $user =  $this->getUser($_GET["id_user"]);
+        }
+        elseif($param === "country") {
           if(isset($_GET['id_country'])) {
             $country = $location->getCountry($_GET['id_country']);
           }
@@ -53,29 +70,11 @@ class AdminController {
       throw new Exception( "Problème de connexion avec le serveur" );
     }
   }
-  public function getCountriesList() {
+  public function getUser($id_user) {
     try {
-      $location = new Location;
-      $countries = $location->getCountries();
-      return $countries;
-    } catch ( Exception $e ) {
-      throw new Exception( "Problème de connexion avec le serveur" );
-    }
-  }
-  public function getStatesList() {
-    try {
-      $location = new Location;
-      $states = $location->getStates(null);
-      return $states;
-    } catch ( Exception $e ) {
-      throw new Exception( "Problème de connexion avec le serveur" );
-    }
-  }
-  public function getCitiesList() {
-    try {
-      $location = new Location;
-      $cities = $location->getCities(null);
-      return $cities;
+      $user = new User;
+      $singleUser = $user->getSingleUser($id_user);
+      return $singleUser;
     } catch ( Exception $e ) {
       throw new Exception( "Problème de connexion avec le serveur" );
     }

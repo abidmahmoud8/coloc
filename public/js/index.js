@@ -7,6 +7,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   user.initConnexion();
   admin.initAdmin();
   product.initProduct();
-  home.initHome()
-  image.initImage()
+  home.initHome();
+  image.initImage();
 });

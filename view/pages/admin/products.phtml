@@ -1,41 +1,35 @@
 <div class="title-container">
   <h2>Liste des produits</h2>
-  <button class="btn-primary"><a href="/?page=admin&param=add-product">Ajouter</a></button>
+  <button class="btn-primary p-0"><a class="m-0 p-2" href="/?page=admin&param=save-product">Ajouter</a></button>
 </div>
 <table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>phone</th>
+      <th>status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php foreach ($products as $product) : ?>
+    <tr>
+      <td><?= $product['id_product']; ?></td>
+      <td><?= $product['title']?></td>
+      <td><?= $product['phone']; ?></td>
+      <td><?= $product['status']; ?></td>
+      <td>
+        <button 
+          data-modal="product-<?= $product['id_product']; ?>" 
+          data-info='{"db": "products", "id": "id_product", "value": "<?= $product['id_product']; ?>", "label": "Annonce"}' 
+          class="btn-danger p-2"
+        >
+          <i class="fa fa-trash-alt"></i>Supprimer
+        </button>
+        <button class="btn-success p-0"><a class="m-0 p-2" href="/?page=admin&param=save-product&id_product=<?= $product['id_product']; ?>"><i class="fa fa-pen"></i>Editer</a></button>
+      </td>
+    </tr>
+  <?php endforeach; ?>
+  </tbody>
 </table>

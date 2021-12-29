@@ -18,13 +18,15 @@ class Image {
         });
       }
     }
-    var deleteImages = document.getElementsByClassName('image-delete')
-    if(deleteImages && deleteImages.length) {
-      for (var index = 0; index < deleteImages.length; index++) {
-        var deleteImage = deleteImages[index];
+    self.deleteImages()
+  }
+  deleteImages() {
+    var deleteImagesButton = document.getElementsByClassName('image-delete')
+    if(deleteImagesButton && deleteImagesButton.length) {
+      for (var index = 0; index < deleteImagesButton.length; index++) {
+        var deleteImage = deleteImagesButton[index];
         deleteImage.addEventListener("click", function(e) {
           this.parentNode.parentNode.removeChild(this.parentNode);
-         
         })
       }
     }
@@ -45,6 +47,7 @@ class Image {
           self.images.push(imageUrl);
         }
       }
+      self.deleteImages()
     } else {
       alert("Problème de connexion avec le serveur");
     }

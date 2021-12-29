@@ -7,29 +7,29 @@
         </div>
         <div class="px-2">
           <div class="select-container">
-            <label for="country">Pays</label>
+            <label for="country">Pay</label>
             <select id="country-selector" name="country" id="country">
-              <option>Selectionner une pay</option>
+              <option value="">Selectionner une pay</option>
               <?php foreach ($countries as $country) : ?>
                 <option value="<?= $country['id_country']; ?>"><?= $country['name']; ?></option>
               <?php endforeach; ?>
             </select>
           </div>
           <div class="select-container">
-            <label for="state">Selectionner une Etat</label>
+            <label for="state">Etat</label>
             <select id="state-selector" name="state" id="state" disabled>
-              <option>Selectionner une Etat</option>
+              <option value="">Selectionner une Etat</option>
             </select>
           </div>
           <div class="select-container">
             <label for="city">Ville</label>
             <select id="city-selector" name="city" id="city" disabled>
-              <option>Selectionner une Ville</option>
+              <option value="">Selectionner une Ville</option>
             </select>
           </div>
         </div>
         <div class="px-2 py-2">
-          <button class="btn-primary w-100">Rechercher</button>
+          <button id="bloc-search-area-btn" class="btn-primary w-100">Rechercher</button>
         </div>
       </div>
       <div id="bloc-search-zip">

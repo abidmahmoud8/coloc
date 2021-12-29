@@ -6,9 +6,9 @@
     <ul>
       <li><a <?php if (!$param || $param === "dashboard"): ?>class="active"<?php endif; ?> href="/?page=admin"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
       <li><a <?php if ($param === "localisations" || $param === "country" || $param === "state" || $param === "city"): ?>class="active"<?php endif; ?> href="?page=admin&param=localisations"><i class="fa fa-map-marker-alt"></i><span>Localisations</span></a></li>
-      <li><a <?php if ($param === "users"): ?>class="active"<?php endif; ?> href="?page=admin&param=users"><i class="fa fa-user"></i><span>Utilisateurs</span></a></li>
+      <li><a <?php if ($param === "users" || $param === "save-user"): ?>class="active"<?php endif; ?> href="?page=admin&param=users"><i class="fa fa-user"></i><span>Utilisateurs</span></a></li>
       <li><a <?php if ($param === "products" || $param === "add-product"): ?>class="active"<?php endif; ?> href="?page=admin&param=products"><i class="fa fa-house-user"></i><span>Annonces</span></a></li>
-      <li><a href=""><i class="fa fa-sign-out-alt"></i><span>Déconnexion</span></a></li>
+      <!-- <li><a href=""><i class="fa fa-sign-out-alt"></i><span>Déconnexion</span></a></li> -->
     </ul>
   </div>
 </div>
